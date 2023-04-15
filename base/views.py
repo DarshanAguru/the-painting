@@ -82,7 +82,7 @@ def home(request):
 def login(request):
 
     admun = 'admin@hunt.com'
-    admp = 'detective@admin'
+    admp = 'admin@123'
 
     if request.session.has_key("adm"):
         return redirect('/adm/')
