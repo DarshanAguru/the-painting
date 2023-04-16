@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    # 'corsheaders',
     'base.apps.BaseConfig',
 ]
 
@@ -60,7 +60,10 @@ PASSWORD_HASHERS = [
 ]
 
 MIDDLEWARE = [
+    # '**corsheaders.middleware.CorsMiddleware**',
     # 'django.contrib.sessions.middleware.SessionMiddleware'
+    # 'django.contrib.sessions.middleware.SessionMiddleware'
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -92,8 +95,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hunt.wsgi.application'
+# SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
-
+SESSION_COOKIE_SECURE = True
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -135,8 +139,23 @@ USE_I18N = True
 
 USE_TZ = True
 
+CORS_ALLOW_CREDENTIALS = True
 
-CSRF_COOKIE_DOMAIN = None
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_COOKIE_SECURE = True 
+CSRF_COOKIE_HTTPONLY = True 
+
+
+CSRF_TRUSTED_ORIGINS = ['https://the-painting.azurewebsites.net']
+CSRF_COOKIE_DOMAIN = 'azurewebsites.net'
+CORS_ORIGIN_WHITELIST = (
+    'https://the-painting.azurewebsites.net/',
+    'the-painting.azurewebsites.net',
+    'azurewebsites.net',
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

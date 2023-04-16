@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Clues,Users,ScoreAndTime
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.hashers import make_password, check_password
 
 
@@ -8,11 +9,11 @@ from django.contrib.auth.hashers import make_password, check_password
 # from datetime import datetime
 import time
 import math
-
+@csrf_exempt
 def view404(request,exception):
     return render(request, '404.html',{"err":exception})
 
-
+@csrf_exempt
 def opps(request):
     if not request.session.has_key('user'):
         return redirect('/login/')
@@ -23,7 +24,7 @@ def opps(request):
     # return render(request,'opps.html',{"clue":"Opps!!! you got Trapped.. It was a trap setup by thief. It seems the question had other answer too which you were unable to figure out.Wait! its the owner's call.(After talking) Damn it!! The owner just told me that the thief left the country and we cant do anything now... :("})
 
 
-
+@csrf_exempt
 def update(uemail,uid ,score,time11):
     if(uid == 1):
         ScoreAndTime.objects.filter(userEmail=uemail).update(cl1Scr=score)
@@ -63,7 +64,7 @@ def update(uemail,uid ,score,time11):
     return False
 
 # Create your views here.
-
+@csrf_exempt
 def home(request):
     if request.session.has_key("clueid"):
         del request.session["clueid"]
@@ -79,6 +80,7 @@ def home(request):
         cont = {"name": request.session["user"]}
     return render(request, 'index.html',cont)
 
+@csrf_exempt
 def login(request):
 
     admun = 'admin@hunt.com'
@@ -115,6 +117,7 @@ def login(request):
             return render(request, 'login.html', {"msg":"Email address not found.. Please sign up!"})
     return render(request, 'login.html')
 
+@csrf_exempt
 def signup(request):
     if request.session.has_key('user'):
         return render('/game/')
@@ -135,6 +138,7 @@ def signup(request):
 
     return render(request, 'signup.html')
 
+@csrf_exempt
 def game(request):
     if not request.session.has_key('user'):
         return redirect('/login/')
@@ -156,7 +160,7 @@ def game(request):
 
 
 
-
+@csrf_exempt
 def gamest(request):
     if not request.session.has_key('user'):
         return redirect('/login/')
@@ -321,7 +325,7 @@ def gamest(request):
     return render(request, 'gamest.html', cont)
 
 
-
+@csrf_exempt
 def restart(request):
     if (not request.session.has_key('user')) and (not request.session.has_key('adm')):
         return redirect('/login/')
@@ -335,7 +339,7 @@ def restart(request):
         del request.session["echtime"]
     return redirect("/game/")
 
-
+@csrf_exempt
 def logout(request):
     # request.session.clear()
     if (not request.session.has_key('user')) and (not request.session.has_key('adm')):
@@ -357,7 +361,7 @@ def logout(request):
     return redirect('/home/')
 
 
-
+@csrf_exempt
 def winner(request):
      if not request.session.has_key("clueid"):
          return redirect('/gamest/')
@@ -372,6 +376,7 @@ def winner(request):
      na = usr.userName
      return render(request, 'winner.html', {"name":na,"score":sc})
 
+@csrf_exempt
 def last(request):
     if not request.session.has_key('user'):
         return redirect('/login/')
@@ -385,7 +390,7 @@ def last(request):
 
 
 
-
+@csrf_exempt
 def adm(request):
     admun = 'admin@hunt.com'
     if not request.session.has_key('adm'):
@@ -408,9 +413,17 @@ def adm(request):
     # srn = [i for i in range(1,len(data.keys())+1)]
     # print(srn)
 
-    data = dict(sorted(data.items(),key=lambda x:x[1][2],reverse = True))
-    return render(request, "adm.html",{"data":val,"value":data})
+    data = dict(sorted(data.items(),key=lambda x:x[1][2]))
+    sdata = dict()
+    i = 1
+    for k,v in data.items():
+        sdata[i] = v
+        i+=1
+    print(sdata)
+    return render(request, "adm.html",{"data":val,"value":sdata})
 
+
+@csrf_exempt
 def usrstats(request,pk):
     admun = 'admin@hunt.com'
     if not request.session.has_key('adm'):
