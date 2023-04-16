@@ -340,7 +340,7 @@ form {
         
     <h1 class="heading-1" align="center">The Painting</h1>
     <div class="alignitems">
-    <div class="preface-content">
+    <div class="preface-content" oncopy="return false" oncut="return false" onpaste="return false">
       <!-- <div id="typewriter"> -->
     
  
@@ -391,6 +391,8 @@ form {
 {% endblock %}
 
 {% block script %}
+
+
 <script>
 
 //   b.classList.add("shake"); 
@@ -485,7 +487,10 @@ window.setInterval((function(){
     });
     
 </script>
+
+
 {% endif %}
+
 
 {% endblock %}
 
