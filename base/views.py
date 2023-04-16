@@ -126,6 +126,8 @@ def signup(request):
         uname = request.POST.get('uname').title()
         uemail = request.POST.get('uemail').lower()
         upass = make_password(request.POST.get('upass'))
+        if not check_password(request.POST.get('repass'), upass):
+            return render(request, 'signup.html',{"msg":"Passwords didn't matched please enter correctly."})
         lst = Users.objects.filter(userEmail=uemail)
         if lst or lst.count() > 0:
             return render(request, 'signup.html',{"msg":"You already have an account... please Login!"})
@@ -404,7 +406,7 @@ def adm(request):
     data = {}
     i = 1
     for usr in usrdata:
-        data[i] = (usr.userEmail,usr.userName, usr.totalScore, usr.totalTime, usr.attempts)
+        data[i] = (usr.userEmail,usr.userName, 0 if usr.totalScore is None else int(usr.totalScore), '00:00' if usr.totalTime is None else usr.totalTime, 0 if usr.attempts is -1 else usr.attempts)
         i+=1
     if data == {}:
         val = False
@@ -413,7 +415,7 @@ def adm(request):
     # srn = [i for i in range(1,len(data.keys())+1)]
     # print(srn)
 
-    data = dict(sorted(data.items(),key=lambda x:x[1][2]))
+    data = dict(sorted(data.items(),key=lambda x:x[1][2], reverse=True))
     sdata = dict()
     i = 1
     for k,v in data.items():
