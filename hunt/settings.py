@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import mimetypes
+import os
 mimetypes.add_type("text/css", ".css", True)
 # mimetypes.add_type("image", ".jpb", True)
 
@@ -29,7 +30,9 @@ SECRET_KEY = 'django-insecure-#*)js)=c-zw-=40gic)*_3vh_!)fh1#-pc_o1&z-^alsh&y83r
 DEBUG = True    
 # DEBUG = False 
 
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [ 'the-painting.azurewebsites.net', '127.0.0.1', 'localhost']
+
+# ALLOWED_HOSTS = [os.environ['the-painting.azurewebsites.net']] if 'the-painting.azurewebsites.net' in os.environ else []
 
 
 # Application definition
@@ -59,6 +62,8 @@ PASSWORD_HASHERS = [
 MIDDLEWARE = [
     # 'django.contrib.sessions.middleware.SessionMiddleware'
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -143,3 +148,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
