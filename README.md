@@ -70,34 +70,34 @@ The possible answers to the questions asked in the puzzle are:
 
 ```
 Q1.
-Ans: fire
+Ans:
 
 Q2.
-Ans: 1845
+Ans:
 
 Q3.
-Ans: personification
+Ans:
 
 Q4.
-Ans: jbk
+Ans:
 
 Q5.(dead end bridge question)
-Ans: large (correct) , few (leads to dead end)
+Ans:
 
 Q6.(dead end bridge question)
-Ans: 36 (correct) , 31 (leads to dead end)
+Ans:
 
 Q7.
-Ans: tarry
+Ans:
 
 Q8.
-Ans: 3.2
+Ans:
 
 Q9. (dead end)
-Ans: past
+Ans:
 
 Q10.(dead end)
-Ans: 56
+Ans:
 
 Q. Last Puzzle where the user has to choose the original painting.
 Ans: The painting with a golden frame is the original one.
