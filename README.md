@@ -1,10 +1,9 @@
+# The Painting
 
-# The Detective: Treasure hunt
-
-The Detective is a treasure hunt game that tests the verbal (or communication) and problem-solving skills of the players.
+The Painting is a treasure hunt type game that tests the verbal (or communication) and problem-solving skills of the players.
 This game has a small story-like plot that will create a theme in the player's mind thus they will have fun while playing the game.
 The project is built using Django Framework(Python) along with some JavaScript used for animations and timers. No Bootstrap css is used. All the codes are written from scratch, although some references are taken from some websites for debugging purposes.
- 
+
 Gameplay is very simple, the user has to sign-up and log in after which the game and scoring process will be described. They will then start and the user is expected to give correct answers as scores will be awarded as per the scoring criteria.
 After the game is over the user will be prompted with the final score he has achieved.
 
