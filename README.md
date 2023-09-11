@@ -18,7 +18,7 @@ The reasoning questions are framed such that there can be more than one correct 
 There are dead-ends in the project which will arise when users fail to get the correct logic required for solving the question.
 
 
-## Features
+## 🆕 Features
 
 - The admin panel has a leaderboard sorted in descending order of the scores.
 - Each user row of the leaderboard table has a view button to view the data insights.
@@ -90,8 +90,8 @@ Q. Last Puzzle where the user has to choose the original painting.
 Ans: The painting with a golden frame is the original one. 
 ``` 
 
-## Technology used
-This project is made from scratch and no templated were used. This uses the Django framework which is one of the best-suited frameworks for these kinds of projects. Some javascript is also used for some functionalities to work such as timer and all.
+## 💻 Technologies used
+This project is made from scratch and no templates were used. This uses the Django framework which is one of the best-suited frameworks for these kinds of projects. Some javascript is also used for some functionalities to work such as timer and all.
 It uses the MVT architecture and thus the models.py of the repository has the database model that is used.\
 There are 3 tables used for this project:\
  - Clues: stores all the questions answers and the score for each.\
